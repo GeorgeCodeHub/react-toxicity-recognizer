@@ -1,6 +1,6 @@
 {
-	"name": "@GeorgeCodeHub/react-toxicity-recognizer",
-	"version": "0.0.2",
+	"name": "react-toxicity-recognizer",
+	"version": "1.0.2",
 	"private": false,
 	"description": "A React toxicity recognition wrapper capable of detecting toxic content from user's input.",
 	"scripts": {
@@ -12,6 +12,11 @@
 	"keywords": [],
 	"author": "GeorgeCodeHub",
 	"license": "ISC",
+	"homepage": "https://github.com/GeorgeCodeHub/react-toxicity-recognizer#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/GeorgeCodeHub/react-toxicity-recognizer"
+	},
 	"devDependencies": {
 		"@babel/core": "^7.19.6",
 		"@babel/preset-env": "^7.19.4",
@@ -47,8 +52,5 @@
 		"dist"
 	],
 	"types": "dist/index.d.ts",
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/georgecodehub"
-	},
 	"dependencies": {}
 }
