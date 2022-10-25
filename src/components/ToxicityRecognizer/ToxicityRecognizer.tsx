@@ -10,6 +10,9 @@ import "./Toxicity.css";
 ToxicityRecognizer.defaultProps = {
 	children: <></>,
 	position: "bottom-right",
+	delay: 500,
+	messageDisplayTime: 5000,
+	toxicityThreshold: 0.8,
 	showMessage: true,
 	showColorError: true,
 	showLoadingIcon: true,
@@ -21,6 +24,9 @@ ToxicityRecognizer.defaultProps = {
 function ToxicityRecognizer({
 	children,
 	position,
+	delay,
+	messageDisplayTime,
+	toxicityThreshold,
 	showMessage,
 	showColorError,
 	showLoadingIcon,
@@ -30,6 +36,9 @@ function ToxicityRecognizer({
 }: {
 	children: JSX.Element;
 	position: string;
+	delay: number;
+	messageDisplayTime: number;
+	toxicityThreshold: number;
 	showMessage: boolean;
 	showColorError: boolean;
 	showLoadingIcon: boolean;
@@ -71,7 +80,7 @@ function ToxicityRecognizer({
 			if (timer) clearTimeout(timer);
 
 			timer = setTimeout(() => {
-				toxicity.load(0.8, []).then((model) => {
+				toxicity.load(toxicityThreshold, []).then((model) => {
 					const sentences = [inputElement.value];
 
 					showLoadingIcon && setIsLoading(true);
@@ -124,11 +133,11 @@ function ToxicityRecognizer({
 							showMessage &&
 								setTimeout(() => {
 									setToastVisible(false);
-								}, 5000);
+								}, messageDisplayTime);
 						}
 					});
 				});
-			}, 500);
+			}, delay);
 		};
 
 		// Set listener and start timeout
@@ -138,7 +147,7 @@ function ToxicityRecognizer({
 			// Remove listener when unmounting
 			inputElement?.removeEventListener("keyup", checkTextInput);
 		};
-	}, []);
+	}, [toxicityThreshold, customTitle, customMessage, messageDisplayTime, delay]);
 
 	return (
 		<>

@@ -1,7 +1,8 @@
 {
 	"name": "@GeorgeCodeHub/react-toxicity-recognizer",
 	"version": "0.0.2",
-	"description": "A React toxicity recognition wrapper",
+	"private": false,
+	"description": "A React toxicity recognition wrapper capable of detecting toxic content from user's input.",
 	"scripts": {
 		"rollup": "rollup -c",
 		"test": "jest",
