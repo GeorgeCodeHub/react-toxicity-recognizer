@@ -124,10 +124,7 @@ function ToxicityRecognizer({
 								indicators: indicators,
 								toxicityTitle: customTitle || toxicityTitle,
 								toxicityMessage:
-									customMessage ||
-									`Your text holds ${toxicityIndicators.indicators
-										.join(", ")
-										.replace(/, ([^,]*)$/, " and $1")} content.`
+									customMessage || `Your text holds ${indicators.join(", ").replace(/, ([^,]*)$/, " and $1")} content.`
 							});
 
 							showMessage &&
