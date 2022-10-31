@@ -83,6 +83,7 @@ function ToxicityRecognizer({
 				toxicity.load(toxicityThreshold, []).then((model) => {
 					const sentences = [inputElement.value];
 
+					showMessage && setToastVisible(false);
 					showLoadingIcon && setIsLoading(true);
 
 					model.classify(sentences).then((predictions) => {
@@ -99,7 +100,10 @@ function ToxicityRecognizer({
 							.filter((item) => item.results[0].match === true)
 							.map((item) => item.label.replace("_", " "));
 
-						if (indicators) {
+						// Hide loading icon
+						showLoadingIcon && setIsLoading(false);
+
+						if (indicators.length) {
 							let toxicityTitle = "Not Toxic";
 
 							switch (indicators.length) {
@@ -117,7 +121,6 @@ function ToxicityRecognizer({
 									break;
 							}
 
-							showLoadingIcon && setIsLoading(false);
 							showMessage && setToastVisible(true);
 
 							setToxicityIndicators({
@@ -131,6 +134,8 @@ function ToxicityRecognizer({
 								setTimeout(() => {
 									setToastVisible(false);
 								}, messageDisplayTime);
+						} else {
+							setToxicityIndicators((state) => ({ ...state, toxicityTitle: "" }));
 						}
 					});
 				});
